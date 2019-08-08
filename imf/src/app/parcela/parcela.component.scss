@@ -1,0 +1,135 @@
+.example-container {
+    position: relative;
+    min-height: 400px;
+  }
+  
+  .example-table-container {
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 85%;
+  }
+  
+  .example-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-rate-limit-reached {
+    color: #980000;
+    max-width: 360px;
+    text-align: center;
+  }
+  
+  /* Column Widths */
+  .mat-column-number,
+  .mat-column-state {
+    max-width: 200px;
+    border: black;
+  }
+  
+  .mat-column-created {
+    max-width: 224px;
+  }
+
+  .button{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: auto;
+    height: auto;
+    border: 0;
+    padding: inherit;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+  //-------------------------------------sidervar estilo 
+
+
+  .cont {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    }
+    .menu{
+    color:#00000094;
+    }
+    
+    .toolbar{
+    background: #0d6e00;
+    }
+    .mobile .toolbar {
+    position: fixed;
+    z-index: 2;
+    }
+    
+    .expanded-nav {
+    background: rgb(242, 242, 242);
+    }
+    .sidenav-container {
+    //background: rgba(118, 118, 118, 0.74);
+    flex: 1;
+    }
+    
+    .mobile .sidenav-container {
+    flex: 1 0 auto;
+    }
+    .expanded-items-list:hover{
+    background: #00000094;
+    color: white;
+    }
+    .body{
+    background: #ffffff;
+    width: auto;
+    }
+    
+    .full-width-table {
+      width: 95%;
+    }
+
+    .ejemplo {
+      color: seagreen;
+      background-color: white;
+
+    }
+    
+    .mat-form-field {
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .prueba{
+      width:94%;
+      height:auto;
+      position: absolute;    
+      right:50%;
+      box-shadow:0 1px 1px -3px rgba(0,0,0,.8), 0 1px 1px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)
+    }

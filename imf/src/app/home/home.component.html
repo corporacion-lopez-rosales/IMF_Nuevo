@@ -1,0 +1,44 @@
+    <div class="cont" [class.mobile]="mobileQuery.matches">
+        <mat-toolbar class="toolbar">
+            <button mat-icon-button class="menu" (click)="snav.toggle()"><mat-icon style="color:white">menu</mat-icon></button>
+            <button mat-icon-button class="menu" style="left: 95%" (click)="salir()"><mat-icon style="color: white">exit_to_app</mat-icon></button>
+        </mat-toolbar>
+        <mat-sidenav-container class="sidenav-container">
+            <mat-sidenav #snav class="expanded-nav col-lg-2 col-md-2 col-sm-4 col-xs-5 p-0 " [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                <mat-nav-list class="expanded-list-nav">
+                    <!--Menu desplegable-->
+                    <a mat-list-item class="expanded-items-list" routerLink="parcela"><mat-icon>folder</mat-icon> Inventario</a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content class="body">
+                <!--Cuerpo-->
+                <div class="container" style="position: relative; left:8%; top:15%">
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3" id="ex">
+                            <a href="http://crm.inmobiliariaimf.com/index.php?route=common/login"><p><img src="assets/img/icon-imf.png" class="rounded-circle" width="130" height="130">IMF</p></a>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3" id="ex">
+                            <a class="url" routerLink="/parcela"><p><img src="assets/img/icon-inventario.png" class="rounded-circle" width="110" height="110">Inventario</p></a>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3" id="ex">
+                            <a class="url" routerLinl=""><p><img src="assets/img/icon-ventas.jpg" class="rounded-circle" width="110" height="110">Ventas</p></a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3" id="ex">
+                            <a class="url" routerLink=""><p><img src="assets/img/icon-cartera1.png" class="rounded-circle" width="110" height="110">Cartera</p></a>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3" id="ex">
+                            <a class="url" routerLink=""><p><img src="assets/img/icon-contabilidad.png" class="rounded-circle" width="110" height="110">Contabilidad</p></a>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3" id="ex">
+                            <a class="url" routerLink=""><p><img src="assets/img/icon-UserControl.png" class="rounded-circle" width="110" height="110">Usuarios</p></a>
+                        </div>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>

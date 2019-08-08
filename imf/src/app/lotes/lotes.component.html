@@ -1,0 +1,72 @@
+<div class="cont" [class.mobile]="mobileQuery.matches">
+        <mat-toolbar class="toolbar">
+            <button mat-icon-button class="menu" (click)="snav.toggle()"><mat-icon style="color:white">menu</mat-icon></button>
+            <button mat-icon-button class="menu" style="left: 95%" (click)="salir()"><mat-icon style="color: white">exit_to_app</mat-icon></button>
+        </mat-toolbar>
+        <mat-sidenav-container class="sidenav-container">
+            <mat-sidenav #snav class="expanded-nav col-lg-2 col-md-2 col-sm-4 col-xs-5 p-0 " [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                <mat-nav-list class="expanded-list-nav">
+                    <a mat-list-item class="expanded-items-list" routerLink="/"><mat-icon>folder</mat-icon>Home</a>
+                    <a mat-list-item class="expanded-items-list" routerLink="/parcela"><mat-icon>add</mat-icon>Parcelas</a>
+                    <a mat-list-item class="expanded-items-list" routerLink="/medidas"><mat-icon>add</mat-icon>Asignacion de medias</a>
+                    <a mat-list-item class="expanded-items-list" routerLink="/reportes"><mat-icon>add</mat-icon>Reporte</a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content class="body">
+                <!--Cuerpo-->
+                <div class="prueba" style="position: relative; left: 5%; top:16%;">
+                    <mat-toolbar><span>Lotes</span></mat-toolbar>
+                    <div class="example-table-container">
+                        <mat-form-field>
+                            <input matInput (keyup)="Filter($event.target.value)" placeholder="Filtro">
+                        </mat-form-field>
+
+                        <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+                            <!--Columna-->
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                <mat-cell *matCellDef="let Elements">{{Elements.id}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="no_parcela">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Num Parcela</mat-header-cell>
+                                <mat-cell *matCellDef="let Elements">{{Elements.no_parcela}}</mat-cell>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="description">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Medias de la parcela</mat-header-cell>
+                                <mat-cell *matCellDef="let Elements">{{Elements.description}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nombre">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Proveedor</mat-header-cell>
+                                <mat-cell *matCellDef="let Elements">{{Elements.nombre}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="Exportar">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header > Exportar </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> 
+                                        <button mat-icon-button class="edit" (click)="getInf(element)"  class="ejemplo">
+                                        <mat-icon class="ejemplo">archive</mat-icon>
+                                        </button>
+                                    </mat-cell>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="Importar">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header > Importar </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> 
+                                    <button mat-icon-button class="edit" #upload (click)="file.click(); getParcela(element)" >
+                                    <mat-icon class="ejemplo">unarchive</mat-icon>
+                                    </button>
+                                    <input #file type="file" [hidden]="true" multiple="false" (change)="onFileChange($event)"/>
+                                </mat-cell>
+                            </ng-container>
+                            
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </table>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>

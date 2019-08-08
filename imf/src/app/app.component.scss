@@ -1,0 +1,41 @@
+.cont
+{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+.menu
+{
+    color: #000000
+}
+.toolbar
+{
+    background: #0d6e00;
+}
+.mobile .toolbar
+{
+    position: fixed;
+    z-index: 2;
+}
+.expanded-nav
+{
+    background: white;
+}
+.sidenav-container
+{
+    flex: 1;
+}
+.mobile .sidenav-container
+{
+    flex: 1 auto;
+}
+.expanded-items-list:hover
+{
+    background: #EDEDED;
+    color: black;
+}
+.body
+{
+    background: white;
+}
+

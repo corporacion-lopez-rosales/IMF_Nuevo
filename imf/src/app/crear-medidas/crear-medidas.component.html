@@ -1,0 +1,128 @@
+
+<div class="cont" [class.mobile]="mobileQuery.matches">
+        <mat-toolbar class="toolbar">
+            <button mat-icon-button class="menu" (click)="snav.toggle()"><mat-icon style="color:white">menu</mat-icon></button>
+            <button mat-icon-button class="menu" style="left: 95%" (click)="salir()"><mat-icon style="color: white">exit_to_app</mat-icon></button>
+        </mat-toolbar>
+        <mat-sidenav-container class="sidenav-container">
+            <mat-sidenav #snav class="expanded-nav col-lg-2 col-md-2 col-sm-4 col-xs-5 p-0 " [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                <mat-nav-list class="expanded-list-nav">
+                    <a mat-list-item class="expanded-items-list" routerLink="/"><mat-icon>folder</mat-icon>Home</a>
+                    <a mat-list-item class="expanded-items-list" routerLink="/parcela"><mat-icon>add</mat-icon>Parcelas</a>
+                    <a mat-list-item class="expanded-items-list" routerLink="/lotes"><mat-icon>add</mat-icon>Lotes</a>
+                    <a mat-list-item class="expanded-items-list" routerLink="/reportes"><mat-icon>add</mat-icon>Reporte</a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content class="body">
+                    <br>
+                    <br>
+                <div class="card">
+                    <mat-toolbar><span>Medidas de areas</span><button mat-stroked-button class="btn-regresar" (click)="Regresar()">Regresar</button></mat-toolbar>
+                    <div class="card-body">
+                        <form #formMedidas="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Municipio" type="text" name="Municipio" #Municipio="ngModel" [(ngModel)]="x.Municipio"/>
+                                    </mat-form-field>
+                                </div>
+    
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Proveedor" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="x.nombre"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Numero de parcela" min="0" type="number" name="no_parcela" #no_parcela="ngModel" [(ngModel)]="x.no_parcela"/>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Area vendible" min="0" type="number" name="vendible" (keyup)="total()" #vendible="ngModel" [(ngModel)]="Medidas.vendible"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Area municipal" min="0" type="number" name="areampa" (keyup)="total()" #areampa="ngModel" [(ngModel)]="Medidas.areampa"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Area Vial" min="0" type="number" name="areavial" (keyup)="total()" #areavial="ngModel" [(ngModel)]="Medidas.areavial"/>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Total" min="0" type="number" [(ngModel)]="total1" name="total1" readonly="readonly"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hectáreas adqueridas" min="0" type="number" name="medidas" #medidas="ngModel" [(ngModel)]="x.medidas" readonly="readonly"/>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="No.Lotes campestres" type="number" min="0" name="lotesC" [(ngModel)]="lotesC"  (keyup)="total()"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="No.Lotes de area municipal" type="number" min="0" name="LotesMun"  [(ngModel)]="LotesMun" (keyup)="total()"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="No.Lotes totales" type="number" min="0" name="totalLotes" [(ngModel)]="totalLotes" readonly="readonly"/>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-stroked-button class="angular-material-button" >Enviar </button>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card-header">Metros cuadros</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Area vendible" type="text" min="0" [(ngModel)]="M2AV" name="M2AV" readonly="readonly"/>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Area municipal" type="text" min="0" [(ngModel)]="M2AM" name="M2AM" readonly="readonly"/>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Area vial" type="text" min="0" [(ngModel)]="M2AVi" name="M2AVi" readonly="readonly"/>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Total" type="text" min="0" [(ngModel)]="M2Tol" name="M2Tol" readonly="readonly"/>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-ms-4 col-xs-3">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Metros cuadrados adqueridos" type="text" min="0" [(ngModel)]="M2HA" name="M2HA" readonly="readonly">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>

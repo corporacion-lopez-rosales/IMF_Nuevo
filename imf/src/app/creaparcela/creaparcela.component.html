@@ -1,0 +1,172 @@
+<div class="cont" [class.mobile]="mobileQuery.matches">
+        <mat-toolbar class="toolbar">
+            <button mat-icon-button class="menu" (click)="snav.toggle()"><mat-icon style="color:white">menu</mat-icon></button>
+            <button mat-icon-button class="menu" style="left: 95%" (click)="salir()"><mat-icon style="color: white">exit_to_app</mat-icon></button>
+        </mat-toolbar>
+        <mat-sidenav-container class="sidenav-container">
+            <mat-sidenav #snav class="expanded-nav col-lg-2 col-md-2 col-sm-4 col-xs-5 p-0 " [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                <mat-nav-list class="expanded-list-nav">
+                        <a mat-list-item class="expanded-items-list" routerLink="/"><mat-icon>folder</mat-icon>Home</a>
+                        <a mat-list-item class="expanded-items-list" routerLink="/medidas"><mat-icon>add</mat-icon>Asignacion de medidas</a>
+                        <a mat-list-item class="expanded-items-list" routerLink="/lotes"><mat-icon>add</mat-icon>Lotes</a>
+                        <a mat-list-item class="expanded-items-list" routerLink="/reportes"><mat-icon>add</mat-icon>Reporte</a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content class="body">
+                    <br>
+                    <br>
+                    <br>
+                   <div class="card">
+                        <mat-toolbar><span>Alta de parcelas</span><button mat-stroked-button class="btn-regresar" (click)="Regresar()">Regresar</button></mat-toolbar>
+                        <div class="card-body">
+                            <mat-tab-group>
+                                    <mat-tab label="Alta proveedor" class="angular-material">
+                                        <br>
+                                        <form #formProveedor="ngForm" (ngSubmit)="altaProveedor()">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Nombre del proveedor" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="proveedor.nombre">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Nacionalidad" type="text" name="nacionalida"  #correo="ngModel" [(ngModel)]="proveedor.nacionalida" >
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Estado civil" type="text" name="estado_civil"  #estado_civil="ngModel" [(ngModel)]="proveedor.estado_civil" >
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-fiel class="example-full-width">   
+                                                        <textarea matInput placeholder="Domicilio" name="domicilio" #domicilio="ngModel" [(ngModel)]="proveedor.domicilio" ></textarea>
+                                                    </mat-form-fiel> 
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field>
+                                                        <input matInput [matDatepicker]="picker1" placeholder="Fecha de nacimiento" name="fecha_nacimiento"  #fecha_nacimiento="ngModel" [(ngModel)]="proveedor.fecha_nacimiento">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                        <mat-datepicker #picker1></mat-datepicker>
+                                                    </mat-form-field>  
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <button mat-stroked-button class="angular-material-button">Crear Proveedor</button>
+                                        </form>
+                                    </mat-tab>
+                                    <mat-tab label="Alta de parcela" class="angular-material">
+                                        <br>
+                                        <form #formParcela="ngForm" (ngSubmit)="altaparcela()">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-select placeholder="Select" name="id_municipio" #region="ngModel" [(ngModel)]="parcela.id_municipio">
+                                                        <mat-option *ngFor="let m of mun" [value]="m.value">
+                                                            {{m.viewValue}} 
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-select placeholder="Select" name="id_tipo" #id_tipo="ngModel" [(ngModel)]="parcela.id_tipo" >
+                                                        <mat-option  *ngFor="let t of tipo" [value]="t.value">
+                                                            {{t.viewValue}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-select placeholder="Select" name="forma" #forma="ngModel" [(ngModel)]="parcela.forma">
+                                                        <mat-option *ngFor="let f of formt" [value]="f.value"> 
+                                                            {{f.viewValue}}
+                                                        </mat-option>  
+                                                    </mat-select>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Numero de parcela" min="0" type="number" name="no_parcela"  #no_parcela="ngModel" [(ngModel)]="parcela.no_parcela" required >
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Hectáreas adqueridas" min="0"  type="number" name="medidas"  #medidas="ngModel" [(ngModel)]="parcela.medidas"  required>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Valor de compra" (keyup)="formato()"  type="text" name="valor_compra"  #valor_compra="ngModel" [(ngModel)]="parcela.valor_compra" required>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Norte"  type="text" name="norte"  #norte="ngModel" [(ngModel)]="parcela.norte">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Sur"  type="text" name="sur"  #sur="ngModel" [(ngModel)]="parcela.sur">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Este"  type="text" name="este"  #este="ngModel" [(ngModel)]="parcela.este">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Oeste"  type="text" name="oeste"  #oeste="ngModel" [(ngModel)]="parcela.oeste">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Noreste"  type="text" name="noreste"  #noreste="ngModel" [(ngModel)]="parcela.noreste">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                        <mat-form-field class="example-full-width">
+                                                                <input matInput placeholder="Noroeste"  type="text" name="noroeste"  #noroeste="ngModel" [(ngModel)]="parcela.noroeste">
+                                                        </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Suroeste"  type="text" name="suroeste"  #suroeste="ngModel" [(ngModel)]="parcela.suroeste">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input matInput placeholder="Sureste"  type="text" name="sureste"  #sureste="ngModel" [(ngModel)]="parcela.sureste">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field class="example-full-width">
+                                                            <textarea matInput placeholder="Descripcion" name="desc_par" #desc_par="ngModel" [(ngModel)]="parcela.desc_par" ></textarea>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                                                    <mat-form-field>
+                                                        <input matInput [matDatepicker]="picker" placeholder="Fecha de alta" name="desc_par"  #desc_par="ngModel" [(ngModel)]="parcela.fecha_alta">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <button mat-stroked-button class="angular-material-button">Crear</button>
+                                        </form>
+                                    </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+    

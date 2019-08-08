@@ -1,0 +1,56 @@
+.cont {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    }
+    .menu{
+    color:#00000094;
+    }
+    
+    .toolbar{
+    background: #0d6e00;
+    }
+    .mobile .toolbar {
+    position: fixed;
+    z-index: 2;
+    }
+    
+    .expanded-nav {
+    background: white;
+    }
+
+    .sidenav-container {
+    flex: 1;
+    }
+    
+    .mobile .sidenav-container {
+    flex: 1 0 auto;
+    }
+    
+    .expanded-items-list:hover{
+    background: #EDEDED;
+    color: black;
+    }
+
+    .body{
+    background: #ffffff;
+    }
+    
+    .btn-regresar{
+        background: #4CAF50;
+        margin-right: 8px;
+        color: white;
+        position: absolute;
+        right:9%;
+        top: 16px;
+    }
+
+    .angular-material-button{
+        background: #4CAF50;
+        margin-right: 8px;
+        color: white;
+    } 
