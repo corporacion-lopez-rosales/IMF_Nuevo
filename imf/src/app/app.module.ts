@@ -31,7 +31,6 @@ import { CrearMedidasComponent } from './crear-medidas/crear-medidas.component';
 import { LotesComponent } from './lotes/lotes.component';
 import { ReportesComponent } from './reportes/reportes.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

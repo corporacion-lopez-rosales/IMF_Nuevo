@@ -79,7 +79,6 @@ export class ReportesComponent implements OnInit {
           }
         }) 
       });
-      console.log(this.Parrafo);
       this.InfTable();
     },
     error=>{
@@ -113,7 +112,6 @@ export class ReportesComponent implements OnInit {
         No:element.id_status,
         NombreS:element.descripcion
       }
-      console.log(this.Array);
       this.sumaMedidas=this.sumaMedidas+parseFloat(this.Array.Medida);
       this.sumaTotal=this.sumaTotal+parseFloat(this.Array.CostoTotal);
       this.Matriz.push(this.Array);

@@ -1,6 +1,5 @@
 import {Component,OnInit,ChangeDetectorRef,OnDestroy} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
-import {Router} from '@angular/router';
 import {Form} from '@angular/forms';
 import {NumeralPipe} from 'ngx-numeral';
 import {ServiciosService} from '../servicios.service';
@@ -26,7 +25,7 @@ export class CreaparcelaComponent implements OnInit {
   public parcela:Parcela;
   public proveedor:Proveedor;
 
-  constructor(private Http:ServiciosService,private router:Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public util:UtilsService)
+  constructor(private Http:ServiciosService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public util:UtilsService)
    { 
     this.mobileQuery = media.matchMedia('(max-width: 1600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -70,10 +69,8 @@ export class CreaparcelaComponent implements OnInit {
   }
 
   altaparcela(ng:Form){
-    console.log(this.parcela);
     this.Http.altaParcela(this.parcela).subscribe(result=>{
-      console.log(result);
-      this.util.openSnackbar("Parcela registrada",`Aceptar ${this.router.navigate(['parcela'])}`)
+      this.util.openSnackbar("Parcela registrada",`Aceptar ${this.util.navegar('parcela')}`);
     },
     error=>{
       this.util.openSnackbar("Error","Aceptar");
@@ -94,7 +91,6 @@ export class CreaparcelaComponent implements OnInit {
   }
 
   obtenerPro(){
-    console.log("Proveedor");
     this.Http.proveedorget().subscribe(result=>{
       this.ArrayPro=Array(result);
       var long=this.ArrayPro[0].length;
@@ -108,6 +104,10 @@ export class CreaparcelaComponent implements OnInit {
     error=>{
       console.log(<any>error);
     })
+  }
+
+  Regresar(){
+    this.util.navegar('parcela');
   }
 }
 

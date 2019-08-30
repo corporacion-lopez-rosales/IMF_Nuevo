@@ -1,9 +1,8 @@
 import {Component,OnInit,ChangeDetectorRef,OnDestroy} from '@angular/core';;
 import {MediaMatcher} from '@angular/cdk/layout';
-import {Router} from '@angular/router';
+import {UtilsService} from '../utils.service'
 import {Form} from '@angular/forms';
 import {NumeralPipe} from 'ngx-numeral';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {ServiciosService} from '../servicios.service';
 import {Medidas} from '../Modelos/Medidas';
 
@@ -16,7 +15,7 @@ export class CrearMedidasComponent implements OnInit {
   mobileQuery:MediaQueryList;
   private _mobileQueryListener:()=>void;
 
-  constructor(private Http:ServiciosService,private router:Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _snackBar:MatSnackBar)
+  constructor(private Http:ServiciosService,private util:UtilsService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher)
   {
     this.mobileQuery = media.matchMedia('(max-width: 1600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -64,27 +63,24 @@ export class CrearMedidasComponent implements OnInit {
 
   }
 
-  openSnackbar(message:string,action:string){
-    this._snackBar.open(message,action,{
-      duration:4000,
-    })
-  }
-
   onSubmit(ng:Form){
-    console.log(this.Medidas);
     if(this.M2Tol==this.M2HA)
     {
       this.Http.MedidasCrea(this.Medidas).subscribe(result=>{
         console.log(result);
-        this.openSnackbar("Medidas ajustadas",`Aceptar${this.router.navigate(['medidas'])}`);
+        this.util.openSnackbar("Medidas ajustadas",`Aceptar${this.util.navegar('medidas')}`);
       },
       error=>{
         console.log(<any>error);
       })
     }
     else{
-      this.openSnackbar("Revise las medidas",'Aceptar');
+      this.util.openSnackbar("Revise las medidas",'Aceptar');
     }
+  }
+
+  Regresar(){
+    this.util.navegar('medidas');
   }
 
 

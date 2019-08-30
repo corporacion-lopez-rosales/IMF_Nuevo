@@ -110,16 +110,13 @@ export class LotesComponent implements OnInit {
       const bstr:string = e.target.result;
       const wb:XLSX.WorkBook = XLSX.read(bstr,{type:'binary'});
       const wsname:string=wb.SheetNames[0];
-      console.log(wsname);
       if(this.Parcela !== wsname){
-        this.util.openSnackbar(`Este documento pertenece a ${this.Parcela}`,"Aceptar")
-        console.log("Dato erroneo");
+        this.util.openSnackbar(`Este documento pertenece a ${this.Parcela}`,"Aceptar");
       }
       else{
         const ws:XLSX.WorkSheet=wb.Sheets[wsname];
         this.Importar = <any>(XLSX.utils.sheet_to_json(ws,{header:1}));
         this.Importar.shift();
-        console.log(this.Importar);
         this.Importar.forEach(element => {
           var Lote={
             id_lotes:element[0],

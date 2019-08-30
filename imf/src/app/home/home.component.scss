@@ -24,7 +24,6 @@
     }
 
     .sidenav-container {
-    //background: rgba(118, 118, 118, 0.74);
     flex: 1;
     }
     
@@ -41,39 +40,47 @@
     background: #ffffff;
     }
     
-    a:visited{
-        color:transparent;
-    }
-    a:active{
-        color:transparent;
-    }
-
-    .url:visited{
-        color:transparent;
-    }
-    .url:active{
-        color:transparent;
+    //Estilo para las imagenes
+    #home{
+        width: auto;
+        min-height: auto;
     }
 
-
-    #ex{
-        width:auto;
-        min-height:auto;
+    #home img {
+        margin: 5px;
+        border: 10px solid #eee;
+        opacity: .9;
     }
 
-    #ex img{
-        margin:5px;
-        opacity:0.2;
-        border:10px solid #eee;
+    #home img:hover{
+     border:10px solid #99A3A4   ;
+     opacity: 1;
+     margin: 5px;
     }
-    #ex img:hover{
-        opacity:1;
+    
+    #home a:link {
+        color: black;
+    }
 
+    #home a:visited{
+        color: transparent;
     }
-    #ex p {
-        opacity:0.3;
+
+    #home a:hover{
+        color: transparent;
     }
-    #ex p:hover{
-        opacity:1;
-        color: #029015;
+
+    #home a:active{
+        color: transparent;
     }
+
+    #home p{
+        opacity: .7;
+    }
+
+    #home p:hover{
+        opacity: 1;
+        color: black
+    }
+
+

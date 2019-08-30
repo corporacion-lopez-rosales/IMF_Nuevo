@@ -10,7 +10,7 @@ export class ServiciosService {
   datos;
 
   //Variable que representa el url al que apuntan los servicios 
-  public url="http://crm.inmobiliariaimf.com/WebServices/index.php/Actualizado/"
+  public url="http://crm.inmobiliariaimf.com/WebServices/Actualizado/"
   
   
   constructor(private http:HttpClient) { }

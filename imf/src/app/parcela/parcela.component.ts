@@ -43,6 +43,7 @@ export class ParcelaComponent implements OnInit {
     this.Http.showParcela().subscribe(result=>{
       this.dataSource=new MatTableDataSource();
       this.dataSource.data=result;
+      console.log(result);
     },
     error=>{
       console.log(<any>error);

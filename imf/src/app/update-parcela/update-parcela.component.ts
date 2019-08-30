@@ -1,12 +1,10 @@
 import {Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {NgForm} from '@angular/forms'
-import {Router} from '@angular/router';
-
-import {ServiciosService} from '../servicios.service';
 import * as moment from 'moment';
 import {NumeralPipe} from 'ngx-numeral';
+import {ServiciosService} from '../servicios.service';
+import {UtilsService} from '../utils.service'
 
 @Component({
   selector: 'app-update-parcela',
@@ -27,35 +25,15 @@ export class UpdateParcelaComponent implements OnInit {
     {value:"2",viewValue:'Co-propiedad'}
   ]
 
-  for:Forma[]=[
+  formt:Forma[]=[
     {value:"1",viewValue:'Comprada'},
     {value:"2",viewValue:'Consignada'}
   ]
 
-  parcela={
-    id:null,
-    no_parcela:null,
-    id_tipo:null,
-    desc_par:null,
-    norte:null,
-    sur:null,
-    este:null,
-    oeste:null,
-    noreste:null,
-    noroeste:null,
-    sureste:null,
-    suroeste:null,
-    fecha_alta:null,
-    id_municipio:null,
-    id_proveedor:null,
-    medidas:null,
-    user_id:null,
-    valor_compra:null,
-    forma:null
-  }
- 
+  parcela={id:null,no_parcela:null,id_tipo:null,desc_par:null,norte:null,sur:null,este:null,oeste:null,noreste:null,noroeste:null,sureste:null,suroeste:null,fecha_alta:null,
+          id_municipio:null,id_proveedor:null,medidas:null,user_id:null,valor_compra:null,forma:null}
   x;
-  constructor(private Http:ServiciosService,private router:Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _snackBar:MatSnackBar) 
+  constructor(private Http:ServiciosService,public util:UtilsService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) 
   {
     this.mobileQuery = media.matchMedia('(max-width: 1600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -66,16 +44,9 @@ export class UpdateParcelaComponent implements OnInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  openSnackbar(message:string,action:string){
-    this._snackBar.open(message,action,{
-      duration:4000,
-    })
-  }
-
   ngOnInit() {
     this.x=this.Http.showinf();
-    console.log(this.x.desc_par);
-    console.log("----------------");
+    console.log(this.x);
     var format = new NumeralPipe(this.x.valor_compra).format('$0,0');
     this.parcela={
       id:this.x.id,
@@ -98,18 +69,20 @@ export class UpdateParcelaComponent implements OnInit {
       valor_compra:format,
       forma:this.x.forma
     }
-    console.log(this.parcela.desc_par);
   }
 
   Actualizar(form:NgForm){
     this.Http.updateParcela(this.parcela).subscribe(result=>{
-      this.openSnackbar("Parcela actualizaca",`Aceptar ${this.router.navigate(['parcela'])}`);
-      console.log(result);
+      this.util.openSnackbar("Parcela actualizaca",`Aceptar ${this.util.navegar('parcela')}`);
     },
     error=>{
       console.log(<any>error)
-      this.openSnackbar("Algo salio mal","Error");
+      this.util.openSnackbar("Algo salio mal","Error");
     })
+  }
+
+  Regresar(){
+    this.util.navegar('parcela');
   }
 
 }

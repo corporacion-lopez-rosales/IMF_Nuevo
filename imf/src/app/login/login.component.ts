@@ -20,9 +20,7 @@ export class LoginComponent implements OnInit {
 
   servicio(){
     this.Http.login().subscribe(result=>{
-      console.log(result);
       this.login=Array(result);
-      console.log(this.login);
       var long = this.login[0].length;
       for(var i=0; i<long; i++){
           if(result[i]['username']==this.username && result[i]['password']==this.password)

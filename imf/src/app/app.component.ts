@@ -13,11 +13,9 @@ export class AppComponent implements OnInit {
   session;
 
   ngOnInit(){
-    console.log("Variable de sesion");
     this.session=this.http.showID();
-  /*  if(this.session==undefined){
+    if(this.session==undefined){
       this.router.navigate(['login'])
-    }*/
-    console.log(this.session);
+    }
   }
 }
