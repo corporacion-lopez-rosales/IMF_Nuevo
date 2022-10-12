@@ -24,7 +24,7 @@
     "exceljs": "^1.14.0",
     "file-saver": "^2.0.2",
     "hammerjs": "^2.0.8",
-    "html2pdf.js": "^0.9.1",
+    "html2pdf.js": "^0.10.1",
     "moment": "^2.24.0",
     "ngx-numeral": "0.0.1-beta.0",
     "rxjs": "~6.4.0",
